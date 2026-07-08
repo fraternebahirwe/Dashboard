@@ -3,7 +3,7 @@
 
 Un tableau de bord moderne, sombre et interactif conçu pour les traders indépendants (Forex, Crypto, Actions). Cette application permet de suivre ses performances en temps réel, de gérer son risque et de visualiser l'évolution de son capital à travers une interface optimisée inspirée de plateformes professionnelles comme TradingView.
 
-🚀 **Démo en ligne :** [traders-ledger.vercel.app](traders-ledger.vercel.app)
+🚀 **Démo en ligne :traders-ledger.vercel.app
 
 ---
 
