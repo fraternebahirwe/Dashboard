@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forex Trading Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- On charge Chart.js pour le graphique plus tard -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard.js"></script>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <header>
+            <button id="info-trigger-btn" class="info-btn" title="Comment ça marche ?">🌙</button>
+
+            <div id="info-modal" class="info-modal hidden">
+                <div class="modal-content">
+                    <button id="close-info-btn" class="close-btn">&times;</button>
+                    <h2>💡 Guide Rapide du Trader</h2>
+                    
+                    <div class="guide-item">
+                        <h3>💱 Paire de devises</h3>
+                        <p>C'est le match entre deux monnaies. Écris les abréviations. <br><strong>Exemples :</strong> EUR/USD (Euro/Dollar), BTC/USD (Bitcoin), GBP/JPY.</p>
+                    </div>
+
+                    <div class="guide-item">
+                        <h3>📈 Gains et Pertes ($)</h3>
+                        <p>Note ici ton résultat :<br>
+                        • Si tu as <strong>gagné</strong> : tape le chiffre normalement (ex: <code>150</code>).<br>
+                        • Si tu as <strong>perdu</strong> : mets un signe moins devant (ex: <code>-50</code>).</p>
+                    </div>
+
+                    <div class="guide-item">
+                        <h3>🧠 Le Cerveau JavaScript</h3>
+                        <p>Le tableau enregistre tout en arrière-plan pour calculer ta balance globale, ton taux de réussite (Win Rate) et colorer ton historique.</p>
+                    </div>
+                </div>
+            </div>
+            <h1>📊 FX Budget Dashboard</h1>
+            <p>Suivi de performance et gestion des risques</p>
+        </header>
+        <section class="chart-section" style="background-color: #161b22; border: 1px solid #30363d; padding: 20px; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+            <h2 style="font-size: 18px; margin-bottom: 20px; border-bottom: 1px solid #30363d; padding-bottom: 10px;">📈 Évolution du Capital</h2>
+            <canvas id="performance-chart" style="width: 100%; max-height: 250px;"></canvas>
+        </section>
+
+        <!-- Section des Statistiques -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <h3>Balance Totale</h3>
+                <p id="total-balance">0.00 $</p>
+            </div>
+            <div class="stat-card">
+                <h3>Taux de Réussite (Win Rate)</h3>
+                <p id="win-rate">0 %</p>
+            </div>
+        </section>
+
+        <!-- Formulaire et Liste -->
+        <main class="main-content">
+            <section class="form-section">
+                <h2>Ajouter un Trade</h2>
+                <form id="trade-form">
+                    <label for="pair">Paire de devises :</label>
+                    <input type="text" id="pair" placeholder="Ex: EUR/USD" required>
+
+                    <label for="amount">Gain (+) ou Perte (-) en $ :</label>
+                    <input type="number" id="amount" placeholder="Ex: 150 ou -50" required>
+
+                    <button type="submit">Enregistrer le Trade</button>
+                </form>
+            </section>
+
+            <section class="history-section">
+                <h2>Historique des Sessions</h2>
+                <ul id="trade-list">
+                    <!-- Les trades s'ajouteront ici dynamiquement -->
+                </ul>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
