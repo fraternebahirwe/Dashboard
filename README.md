@@ -1,35 +1,190 @@
-📊 FX Budget Dashboard — Intelligent Trading Journal
+# 📊 FX Budget Dashboard
 
-A modern, dark-themed, and interactive dashboard designed for independent traders (Forex, Crypto, and Stocks). This application helps you monitor your trading performance in real time, manage risk efficiently, and visualize your account growth through a professional interface inspired by platforms like TradingView.
+> An intelligent trading journal built for Forex, Crypto, and Stock traders to track performance, manage risk, and visualize account growth through a modern, interactive dashboard.
 
-🚀 Live Demo: https:[//fratboy-techcon.vercel.app](https://traders-ledger.vercel.app/)
+🚀 **Live Demo:**[ https://fratboy-techcon.vercel.app](https://traders-ledger.vercel.app/)
 
-📸 Interface Preview
+---
 
-Insert a high-quality screenshot or an animated GIF showcasing your application in action here!
+## 📸 Preview
 
-🔥 Key Features
-📈 Dynamic Performance Tracking: Integrated real-time line chart powered by Chart.js to display the cumulative profit and loss curve.
-🧠 Automatic Risk Calculator: Instantly analyzes your overall account balance and calculates your Win Rate (%) based on your trading history.
-💾 Data Persistence (No Data Loss): Automatically saves all trading sessions using the LocalStorage API, ensuring your data remains available even after refreshing or closing the browser.
-❌ Trade History Management: Quickly add trading sessions with automatic currency pair normalization (uppercase), color-coded profit/loss feedback (green/red), and remove trades instantly with automatic dashboard recalculation.
-🌙 Interactive User Guide: Built-in informational modal accessible through a moon icon, providing step-by-step guidance on how to use the application.
-🛠️ Architecture & Technologies
+> Replace this section with a screenshot or GIF of the application.
 
-The goal of this project was to build a fast, lightweight, and high-performance application without relying on heavy front-end frameworks.
+```md
+![FX Budget Dashboard](./assets/dashboard-preview.png)
+```
 
-HTML5: Semantic structure optimized for accessibility and efficient DOM manipulation.
-CSS3 (Variables & Grid): Modern dark-themed interface built with CSS variables for maintainability, CSS Grid for responsive layouts, and Flexbox for dynamic UI components.
-Modern JavaScript (ES6+):
-Safe and asynchronous script initialization using DOMContentLoaded.
-Advanced manipulation of complex object arrays.
-Extensive use of native array methods:
-.reduce() for cumulative calculations.
-.filter() for statistics and trade deletion.
-.forEach() for dynamic rendering.
-Chart.js: Interactive charts rendered using the HTML5 <canvas> API.
-📂 Project Structure
-├── index.html      # Application structure and CDN integrations
-├── style.css       # Dark theme styling and responsive layout
-├── dashboard.js    # Application logic (calculations, charts, local storage)
-└── README.md       # Project documentation
+---
+
+## ✨ Features
+
+### 📈 Dynamic Performance Tracking
+
+Visualize your trading performance with an interactive line chart powered by **Chart.js**. The chart automatically updates to reflect your cumulative profit and loss over time.
+
+### 🧠 Automatic Risk Analysis
+
+Monitor your trading performance with live statistics, including:
+
+- Total Balance
+- Total Profit & Loss
+- Win Rate (%)
+- Trading History Summary
+
+### 💾 Local Data Persistence
+
+Your trading sessions are automatically saved using the **LocalStorage API**, allowing you to close or refresh the browser without losing any data.
+
+### 📝 Trade Management
+
+- Add new trading sessions
+- Automatic currency pair formatting (EURUSD, GBPJPY...)
+- Color-coded profit and loss entries
+- Delete trades instantly
+- Automatic recalculation of all statistics
+
+### 📊 Interactive Dashboard
+
+The dashboard updates instantly whenever a trade is added or removed.
+
+### 🌙 Built-in User Guide
+
+An integrated help modal explains how to use every part of the application, making it beginner-friendly.
+
+---
+
+# 🛠️ Built With
+
+- **HTML5**
+- **CSS3**
+  - CSS Variables
+  - CSS Grid
+  - Flexbox
+- **JavaScript (ES6+)**
+- **Chart.js**
+- **LocalStorage API**
+
+---
+
+# 🧠 Technical Highlights
+
+This project demonstrates:
+
+- Semantic HTML structure
+- Responsive design
+- Modern JavaScript (ES6+)
+- DOM Manipulation
+- Array Methods (`map`, `filter`, `reduce`, `forEach`)
+- Event Handling
+- LocalStorage persistence
+- Dynamic Chart Rendering
+- Modular and maintainable code
+
+---
+
+# 📂 Project Structure
+
+```text
+FX-Budget-Dashboard/
+│
+├── index.html
+├── style.css
+├── dashboard.js
+└── README.md
+```
+
+---
+
+# 🚀 Getting Started
+
+Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/fx-budget-dashboard.git
+```
+
+Navigate into the project:
+
+```bash
+cd fx-budget-dashboard
+```
+
+Open `index.html` in your browser or use **Live Server** in VS Code.
+
+---
+
+# 📖 How to Use
+
+1. Enter a currency pair.
+2. Add the trade result.
+3. Submit the trade.
+4. View updated statistics instantly.
+5. Analyze your performance using the chart.
+6. Delete trades whenever necessary.
+
+---
+
+# 🎯 Future Improvements
+
+- User authentication
+- Cloud database synchronization
+- Trade filtering
+- Monthly statistics
+- Dark / Light theme switch
+- Export to CSV
+- Import trading history
+- Trading notes
+- Performance by currency pair
+
+---
+
+# 💡 Why I Built This
+
+I created this project to practice building real-world JavaScript applications without relying on front-end frameworks.
+
+The main goals were to strengthen my understanding of:
+
+- State management with vanilla JavaScript
+- Data persistence
+- DOM manipulation
+- Interactive dashboards
+- Responsive UI design
+- Data visualization
+
+---
+
+# 📱 Responsive Design
+
+The application is fully responsive and optimized for:
+
+- 💻 Desktop
+- 📱 Mobile
+- 📟 Tablet
+
+---
+
+# 👨‍💻 Author
+
+**Fraterne Bahirwe**
+
+Front-End Developer
+
+🌐 Portfolio: https://fraternebahirwe.vercel.app
+
+🐙 GitHub: https://github.com/fraternebahirwe
+
+💼 LinkedIn: *(Add your LinkedIn profile here)*
+
+---
+
+# ⭐ Support
+
+If you found this project helpful or interesting, consider giving it a ⭐ on GitHub.
+
+It helps support my work and encourages me to continue building open-source projects.
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
