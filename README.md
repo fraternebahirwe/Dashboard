@@ -1,18 +1,8 @@
 # 📊 FX Budget Dashboard
 
-> An intelligent trading journal built for Forex, Crypto, and Stock traders to track performance, manage risk, and visualize account growth through a modern, interactive dashboard.
+ An intelligent trading journal built for Forex, Crypto, and Stock traders to track performance, manage risk, and visualize account growth through a modern, interactive dashboard.
 
-🚀 **Live Demo:**[ https://fratboy-techcon.vercel.app](https://traders-ledger.vercel.app/)
-
----
-
-## 📸 Preview
-
-> Replace this section with a screenshot or GIF of the application.
-
-```md
-![FX Budget Dashboard](./assets/dashboard-preview.png)
-```
+🚀 Live Demo:https://traders-ledger.vercel.app/
 
 ---
 
