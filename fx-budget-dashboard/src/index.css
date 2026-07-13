@@ -31,13 +31,13 @@
 }
 
 /* ==========================================================================
-   🔵 MODE BLEU CIEL INTEGRAL SUR TOUTE LA PAGE
+   🔵 MODE BLEU CIEL INTEGRAL SUR TOUTE LA PAGE (CORRIGÉ)
    ========================================================================== */
 body.light-theme {
-    --bg-dark: #bae6fd;         /* Éléments internes bleu ciel un peu plus prononcé */
+    --bg-dark: #f0f9ff;         /* Fond des inputs blanc/bleuté très clair pour la lisibilité */
     --bg-body: #e0f2fe;         /* TOUTE LA PAGE devient bleu ciel lumineux */
-    --card-bg: rgba(255, 255, 255, 0.65); /* Verre blanc haut de gamme */
-    --card-hover: rgba(255, 255, 255, 0.85);
+    --card-bg: rgba(255, 255, 255, 0.7); /* Verre blanc haut de gamme */
+    --card-hover: rgba(255, 255, 255, 0.9);
     --border-color: rgba(14, 165, 233, 0.2); 
     --border-glow: rgba(14, 165, 233, 0.4);
     --text-main: #0369a1;       /* Texte bleu marine élégant */
@@ -48,8 +48,8 @@ body.light-theme {
     --accent-glow: rgba(14, 165, 233, 0.2);
     --orb-one-color: #38bdf8;   /* Orbes lumineuses adaptées au fond clair */
     --orb-two-color: #34d399;
-    --plasma-opacity: 0.4;      /* Augmentation de l'opacité pour le contraste */
-    --glass-shadow: rgba(14, 165, 233, 0.1);
+    --plasma-opacity: 0.35;      /* Équilibre de l'opacité sur fond clair */
+    --glass-shadow: rgba(14, 165, 233, 0.08);
 }
 
 /* ==========================================================================
@@ -76,7 +76,7 @@ body.light-theme {
 }
 
 body {
-    background-color: var(--bg-body) !important; /* Dynamique selon le mode choisi */
+    background-color: var(--bg-body) !important; 
     color: var(--text-main);
     display: flex;
     justify-content: center;
@@ -86,7 +86,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     position: relative;
     overflow-x: hidden;
-    transition: background-color 0.4s ease, color 0.4s ease; /* Transition fluide */
+    transition: background-color 0.4s ease, color 0.4s ease; 
 }
 
 /* Hyper-Optimized Light Orbs with Chromatic Saturation */
@@ -99,7 +99,7 @@ body::after {
     border-radius: 50%;
     pointer-events: none;
     z-index: -2;
-    mix-blend-mode: multiply; /* Changement de blend-mode pour l'adapter au clair et sombre */
+    mix-blend-mode: multiply; /* Fusion parfaite sur fond sombre et fond clair */
     filter: blur(160px);
     opacity: var(--plasma-opacity);
     will-change: transform;
@@ -170,6 +170,8 @@ header h1 {
     font-weight: 800;
     letter-spacing: -0.03em;
     margin-bottom: 4px;
+    /* Ajusté pour éviter la disparition du texte en mode clair */
+    color: var(--text-main);
     background: linear-gradient(135deg, var(--text-main) 40%, var(--text-muted) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -409,9 +411,10 @@ form button:active {
     color: var(--crypto-red);
 }
 
-/* Slide-to-Reveal Controls */
+/* Slide-to-Reveal Controls (Sécurisé pour le mode clair) */
 .delete-btn {
     opacity: 0;
+    color: var(--crypto-red);
     transform: translateX(10px);
     transition: var(--spring-transition);
 }
