@@ -422,3 +422,20 @@ form button:active {
 .hidden {
     display: none !important;
 }
+
+.title-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(47, 129, 247, 0.1); /* Subtle premium fintech blue glow */
+    border: 1px solid rgba(47, 129, 247, 0.25);
+    padding: 8px;
+    border-radius: 10px;
+    margin-right: 12px;
+    vertical-align: middle;
+}
+
+.title-icon svg {
+    display: block;
+    filter: drop-shadow(0px 0px 8px rgba(47, 129, 247, 0.5)); /* Soft neon bloom effect */
+}
