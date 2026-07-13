@@ -2,8 +2,10 @@
    1. SYSTEM VARIABLES & FINTECH COLORWAY (MASTERPIECE)
    ========================================================================== */
 :root {
+    /* --- MODE SOMBRE (Par défaut) --- */
     --bg-dark: #04060a;         /* Deep, non-glare cinematic space */
-    --card-bg: #0d1117;         /* Sleek obsidian card backgrounds */
+    --bg-body: #020408;         /* Ultra-deep premium black */
+    --card-bg: rgba(13, 20, 35, 0.55); /* Sleek obsidian card backgrounds */
     --card-hover: #161b22;      /* Smooth elevated surface */
     --border-color: #21262d;    /* Razor thin modern borders */
     --border-glow: #30363d;
@@ -18,89 +20,38 @@
     --crypto-red: #f43f5e;      
     --crypto-red-glow: rgba(244, 63, 94, 0.25);
     
+    /* Fluid Quantum Orbs Variables */
+    --orb-one-color: #1d4ed8;
+    --orb-two-color: #059669;
+    --plasma-opacity: 0.15;
+    --glass-shadow: rgba(0, 0, 0, 0.6);
+    
     /* Physics-based spring transitions */
     --spring-transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* ==========================================================================
-   2. ELITE PLASMA MESH ENGINE (NON-SYNCHRONOUS CINEMATIC DRIFT)
-   ========================================================================== 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+   🔵 MODE BLEU CIEL INTEGRAL SUR TOUTE LA PAGE
+   ========================================================================== */
+body.light-theme {
+    --bg-dark: #bae6fd;         /* Éléments internes bleu ciel un peu plus prononcé */
+    --bg-body: #e0f2fe;         /* TOUTE LA PAGE devient bleu ciel lumineux */
+    --card-bg: rgba(255, 255, 255, 0.65); /* Verre blanc haut de gamme */
+    --card-hover: rgba(255, 255, 255, 0.85);
+    --border-color: rgba(14, 165, 233, 0.2); 
+    --border-glow: rgba(14, 165, 233, 0.4);
+    --text-main: #0369a1;       /* Texte bleu marine élégant */
+    --text-muted: #0284c7;
+    
+    /* Ajustements graphiques pour le mode clair */
+    --accent-blue: #0284c7;
+    --accent-glow: rgba(14, 165, 233, 0.2);
+    --orb-one-color: #38bdf8;   /* Orbes lumineuses adaptées au fond clair */
+    --orb-two-color: #34d399;
+    --plasma-opacity: 0.4;      /* Augmentation de l'opacité pour le contraste */
+    --glass-shadow: rgba(14, 165, 233, 0.1);
 }
 
-body {
-    background-color: #030508;
-    color: var(--text-main);
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    position: relative;
-    overflow-x: hidden;
-}
-
-body::before,
-body::after {
-    content: "";
-    position: fixed;
-    width: 800px;
-    height: 800px;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: -1;
-    mix-blend-mode: screen;
-    filter: blur(140px);
-    opacity: 0.12;
-}
-
-
-body::before {
-    background: radial-gradient(circle, var(--accent-blue) 0%, transparent 70%);
-    top: -20%;
-    left: -10%;
-    animation: liquidOrbOne 25s ease-in-out infinite alternate;
-}
-
-body::after {
-    background: radial-gradient(circle, var(--crypto-green) 0%, transparent 70%);
-    bottom: -20%;
-    right: -10%;
-    animation: liquidOrbTwo 30s ease-in-out infinite alternate;
-}
-
-@keyframes liquidOrbOne {
-    0% {
-        transform: translate(0px, 0px) scale(1) rotate(0deg);
-    }
-    33% {
-        transform: translate(100px, 150px) scale(1.15) rotate(120deg);
-    }
-    66% {
-        transform: translate(-50px, 300px) scale(0.85) rotate(-90deg);
-    }
-    100% {
-        transform: translate(0px, 0px) scale(1) rotate(0deg);
-    }
-}
-
-@keyframes liquidOrbTwo {
-    0% {
-        transform: translate(0px, 0px) scale(1.1) rotate(0deg);
-    }
-    50% {
-        transform: translate(-150px, -100px) scale(0.9) rotate(-180deg);
-    }
-    100% {
-        transform: translate(0px, 0px) scale(1.1) rotate(0deg);
-    }
-}
-*/
 /* ==========================================================================
    2. ELITE QUANTUM FLUID MATRIX (QUANT MASTERPIECE)
    ========================================================================== */
@@ -119,12 +70,13 @@ body::after {
     width: 100vw;
     height: 100vh;
     z-index: -1;
-    pointer-events: none; /* Mouse passes through to trigger background script */
-    opacity: 0.35;       /* Perfect balance for dark mode terminal */
+    pointer-events: none;
+    opacity: var(--plasma-opacity);       
+    transition: var(--spring-transition);
 }
 
 body {
-    background-color: #020408; /* Ultra-deep premium black */
+    background-color: var(--bg-body) !important; /* Dynamique selon le mode choisi */
     color: var(--text-main);
     display: flex;
     justify-content: center;
@@ -134,6 +86,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     position: relative;
     overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease; /* Transition fluide */
 }
 
 /* Hyper-Optimized Light Orbs with Chromatic Saturation */
@@ -146,15 +99,16 @@ body::after {
     border-radius: 50%;
     pointer-events: none;
     z-index: -2;
-    mix-blend-mode: screen;
+    mix-blend-mode: multiply; /* Changement de blend-mode pour l'adapter au clair et sombre */
     filter: blur(160px);
-    opacity: 0.15;
-    will-change: transform; /* Bypasses CPU bottlenecking */
+    opacity: var(--plasma-opacity);
+    will-change: transform;
+    transition: var(--spring-transition);
 }
 
-/* Orb 1: Deep Quantum Indigo */
+/* Orb 1: Deep Quantum Indigo / Cyan */
 body::before {
-    background: radial-gradient(circle, #1d4ed8 0%, rgba(3, 7, 18, 0) 75%);
+    background: radial-gradient(circle, var(--orb-one-color) 0%, rgba(3, 7, 18, 0) 75%);
     top: -15%;
     left: -15%;
     animation: quantumDriftOne 35s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
@@ -162,17 +116,16 @@ body::before {
 
 /* Orb 2: High-Yield Jade */
 body::after {
-    background: radial-gradient(circle, #059669 0%, rgba(3, 7, 18, 0) 75%);
+    background: radial-gradient(circle, var(--orb-two-color) 0%, rgba(3, 7, 18, 0) 75%);
     bottom: -20%;
     right: -15%;
     animation: quantumDriftTwo 40s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
 }
 
-/* Cinematic non-linear trajectory animations */
 @keyframes quantumDriftOne {
-    0% { transform: translate(0px, 0px) scale(1) rotate(0deg) hue-rotate(0deg); }
-    50% { transform: translate(180px, 120px) scale(1.2) rotate(180deg) hue-rotate(30deg); }
-    100% { transform: translate(-60px, 240px) scale(0.9) rotate(360deg) hue-rotate(0deg); }
+    0% { transform: translate(0px, 0px) scale(1) rotate(0deg); }
+    50% { transform: translate(180px, 120px) scale(1.2) rotate(180deg); }
+    100% { transform: translate(-60px, 240px) scale(0.9) rotate(360deg); }
 }
 
 @keyframes quantumDriftTwo {
@@ -183,11 +136,19 @@ body::after {
 
 /* Advanced high-contrast glassmorphic card design override */
 .form-section, .stat-card, .history-section {
-    background: rgba(10, 15, 26, 0.55) !important;
+    background: var(--card-bg) !important;
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 12px 40px 0 var(--glass-shadow);
+    transition: var(--spring-transition);
+}
+
+/* Conteneur React Transparent */
+.dashboard-container {
+    background: transparent !important;
+    width: 100%;
+    max-width: 1200px;
 }
 
 /* ==========================================================================
@@ -209,7 +170,7 @@ header h1 {
     font-weight: 800;
     letter-spacing: -0.03em;
     margin-bottom: 4px;
-    background: linear-gradient(135deg, #ffffff 40%, var(--text-muted) 100%);
+    background: linear-gradient(135deg, var(--text-main) 40%, var(--text-muted) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -221,7 +182,6 @@ header p {
     text-transform: uppercase;
 }
 
-/* Fixed Info Trigger Placement */
 .info-btn {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -230,7 +190,7 @@ header p {
     border-radius: 20px;
     cursor: pointer;
     transition: var(--spring-transition);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .info-btn:hover {
@@ -254,7 +214,7 @@ header p {
 
 .chart-section:hover {
     border-color: var(--border-glow) !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+    box-shadow: 0 8px 32px var(--glass-shadow) !important;
 }
 
 /* ==========================================================================
@@ -268,20 +228,17 @@ header p {
 }
 
 .stat-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
     padding: 24px;
     border-radius: 12px;
     position: relative;
     overflow: hidden;
-    transition: var(--spring-transition);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .stat-card:hover {
     transform: translateY(-4px);
     border-color: var(--border-glow);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 12px 30px var(--glass-shadow);
 }
 
 .stat-card h3 {
@@ -302,7 +259,6 @@ header p {
     transition: text-shadow 0.3s ease, color 0.3s ease;
 }
 
-/* Intelligent Real-Time Ambient Light Bloom */
 #total-balance[style*="color: rgb(16, 185, 129)"],
 #total-balance[style*="color: #10b981"] {
     text-shadow: 0 0 25px var(--crypto-green-glow);
@@ -328,19 +284,6 @@ header p {
     .main-content {
         grid-template-columns: 1fr;
     }
-}
-
-.form-section, .history-section {
-    /* Fluid Pro Glassmorphism */
-    background-color: rgba(13, 17, 23, 0.75) !important; 
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    
-    border: 1px solid var(--border-color);
-    padding: 28px;
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    transition: var(--spring-transition);
 }
 
 h2 {
@@ -385,7 +328,7 @@ form input {
 }
 
 form input:hover {
-    border-color: #444c56;
+    border-color: var(--text-muted);
 }
 
 form input:focus {
@@ -408,8 +351,8 @@ form button {
 }
 
 form button:hover {
-    background-color: #4c94ff;
-    box-shadow: 0 4px 20px rgba(47, 129, 247, 0.4);
+    filter: brightness(1.1);
+    box-shadow: 0 4px 20px var(--accent-glow);
 }
 
 form button:active {
@@ -452,10 +395,6 @@ form button:active {
     transform: translateX(4px);
 }
 
-.trade-item:active {
-    transform: scale(0.99);
-}
-
 .trade-item.win {
     border-left: 4px solid var(--crypto-green);
 }
@@ -470,11 +409,6 @@ form button:active {
     color: var(--crypto-red);
 }
 
-.trade-item strong {
-    font-variant-numeric: tabular-nums;
-    font-size: 15px;
-}
-
 /* Slide-to-Reveal Controls */
 .delete-btn {
     opacity: 0;
@@ -485,11 +419,6 @@ form button:active {
 .trade-item:hover .delete-btn {
     opacity: 0.5;
     transform: translateX(0);
-}
-
-.delete-btn:hover {
-    opacity: 1 !important;
-    transform: scale(1.2) !important;
 }
 
 /* ==========================================================================
@@ -507,62 +436,14 @@ form button:active {
 }
 
 .modal-content {
-    background-color: rgba(22, 27, 34, 0.96);
+    background-color: var(--card-bg);
     border: 1px solid var(--border-color);
     padding: 36px;
     border-radius: 20px;
     max-width: 480px;
     width: 90%;
     position: relative;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
-    animation: cubicEntrance 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes cubicEntrance {
-    from { transform: scale(0.94) translateY(20px); opacity: 0; }
-    to { transform: scale(1) translateY(0); opacity: 1; }
-}
-
-.close-btn {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    font-size: 28px;
-    cursor: pointer;
-    line-height: 0.5;
-    transition: var(--spring-transition);
-}
-
-.close-btn:hover {
-    color: var(--crypto-red);
-    transform: scale(1.1);
-}
-
-.guide-item {
-    margin-top: 24px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid rgba(48, 54, 61, 0.4);
-}
-
-.guide-item:last-child {
-    border-bottom: none;
-}
-
-.guide-item h3 {
-    font-size: 13px;
-    color: var(--accent-blue);
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-}
-
-.guide-item p {
-    font-size: 13px;
-    color: #aeafb0;
-    line-height: 1.6;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
 }
 
 .hidden {
@@ -582,9 +463,4 @@ form button:active {
     border-radius: 10px;
     margin-right: 12px;
     vertical-align: middle;
-}
-
-.title-icon svg {
-    display: block;
-    filter: drop-shadow(0px 0px 8px rgba(47, 129, 247, 0.5)); 
 }
