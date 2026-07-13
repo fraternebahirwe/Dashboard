@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -11,7 +11,6 @@ import {
   Legend
 } from 'chart.js';
 
-// Enregistrement des composants requis pour Chart.js
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -27,11 +26,17 @@ export default function App() {
   const [pair, setPair] = useState('');
   const [amount, setAmount] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  // 1. AJOUT DU STATE POUR LE THEME DUAL
   const [isDarkMode, setIsDarkMode] = useState(true);
 
-  // Soumission d'un nouveau trade
+  // 🔴 LOGIQUE COMPLÈTE POUR CHANGER TOUTE LA PAGE (BODY)
+  useEffect(() => {
+    if (!isDarkMode) {
+      document.body.classList.add('light-theme');
+    } else {
+      document.body.classList.remove('light-theme');
+    }
+  }, [isDarkMode]);
+
   const handleRecordTrade = (e) => {
     e.preventDefault();
     if (!pair || !amount) return;
@@ -49,22 +54,18 @@ export default function App() {
     setAmount('');
   };
 
-  // Suppression d'un trade
   const handleDeleteTrade = (id) => {
     setTrades(trades.filter(trade => trade.id !== id));
   };
 
-  // Fonction pour basculer le thème
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
   };
 
-  // Calculs financiers dynamiques
   const totalBalance = trades.reduce((sum, t) => sum + t.amount, 0);
   const totalWins = trades.filter(t => t.type === 'win').length;
   const winRate = trades.length > 0 ? Math.round((totalWins / trades.length) * 100) : 0;
 
-  // Configuration des données du graphique (Capital Curve Matrix)
   const getChartData = () => {
     let currentBalance = 0;
     const dataPoints = [...trades].reverse().map(t => {
@@ -80,10 +81,10 @@ export default function App() {
         {
           label: 'Capital Growth ($)',
           data: dataPoints.length > 0 ? dataPoints : [0],
-          borderColor: isDarkMode ? '#2f81f7' : '#1d4ed8', // Couleur dynamique de la ligne
-          backgroundColor: isDarkMode ? 'rgba(47, 129, 247, 0.1)' : 'rgba(29, 78, 216, 0.1)',
+          borderColor: isDarkMode ? '#2f81f7' : '#0284c7', 
+          backgroundColor: isDarkMode ? 'rgba(47, 129, 247, 0.1)' : 'rgba(2, 132, 199, 0.1)',
           borderWidth: 3,
-          pointBackgroundColor: isDarkMode ? '#2f81f7' : '#1d4ed8',
+          pointBackgroundColor: isDarkMode ? '#2f81f7' : '#0284c7',
           pointBorderColor: '#fff',
           pointHoverRadius: 6,
           tension: 0.3,
@@ -93,48 +94,40 @@ export default function App() {
     };
   };
 
-  // 2. CONFIGURATION DYNAMIQUE DES COULEURS DES AXES DU GRAPHIQUE
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false }
-    },
+    plugins: { legend: { display: false } },
     scales: {
       x: { 
-        grid: { color: isDarkMode ? 'rgba(48, 54, 61, 0.2)' : 'rgba(148, 163, 184, 0.2)' }, 
-        ticks: { color: isDarkMode ? '#8b949e' : '#64748b' } 
+        grid: { color: isDarkMode ? 'rgba(48, 54, 61, 0.2)' : 'rgba(14, 165, 233, 0.15)' }, 
+        ticks: { color: isDarkMode ? '#8b949e' : '#0369a1' } 
       },
       y: { 
-        grid: { color: isDarkMode ? 'rgba(48, 54, 61, 0.2)' : 'rgba(148, 163, 184, 0.2)' }, 
-        ticks: { color: isDarkMode ? '#8b949e' : '#64748b' } 
+        grid: { color: isDarkMode ? 'rgba(48, 54, 61, 0.2)' : 'rgba(14, 165, 233, 0.15)' }, 
+        ticks: { color: isDarkMode ? '#8b949e' : '#0369a1' } 
       }
     }
   };
 
   return (
-    // 3. INJECTION DE LA CLASSE DE THEME CLAIR SUR LE CONTENEUR PRINCIPAL
-    <div className={`dashboard-container ${!isDarkMode ? 'light-theme' : ''}`}>
-      
-      {/* Premium Glassmorphism Informational Modal Overlay */}
+    <div className="dashboard-container">
+      {/* Modal */}
       {isModalOpen && (
         <div className="info-modal">
           <div className="modal-content">
             <button className="close-btn" onClick={() => setIsModalOpen(false)} aria-label="Close Guide">&times;</button>
             <h2>💡 Quick Trader's Guide</h2>
-            
             <div className="guide-item">
               <h3>💱 Currency Pair</h3>
               <p>This is the matchup between two currencies. Type the standard abbreviations. <br /><strong>Examples:</strong> EUR/USD, BTC/USD, GBP/JPY.</p>
             </div>
-
             <div className="guide-item">
               <h3>📈 Profit and Loss ($)</h3>
               <p>Enter your precise session result here:<br />
               • If you <strong>won</strong>: enter the integer normally (e.g., <code>150</code>).<br />
               • If you <strong>lost</strong>: put a negative sign in front (e.g., <code>-50</code>).</p>
             </div>
-
             <div className="guide-item">
               <h3>🧠 Neural Logic Engine</h3>
               <p>The client-side architecture records telemetry data in the background to dynamically index your capital curve balance, win rate metrics, and render immediate performance status indicators.</p>
@@ -143,7 +136,7 @@ export default function App() {
         </div>
       )}
 
-      {/* Executive Asymmetrical Header Section */}
+      {/* Header Section */}
       <header>
         <div>
           <h1>
@@ -156,24 +149,20 @@ export default function App() {
             </span> 
             FX Budget Dashboard
           </h1>
-          <p style={{ color: 'var(--text-muted)' }}>Performance analytics & smart data-driven risk management</p>
+          <p>Performance analytics & smart data-driven risk management</p>
         </div>
 
-        {/* 4. ZONE DES DEUX BOUTONS CORRIGÉE */}
         <div style={{ display: 'flex', gap: '12px' }}>
-          {/* BOUTON THÈME : Affiche un soleil en mode sombre (pour allumer) et une lune en mode clair */}
           <button className="info-btn" onClick={toggleTheme} title="Switch Theme" style={{ fontSize: '18px' }}>
             {isDarkMode ? '☀️' : '🌙'}
           </button>
-          
-          {/* BOUTON GUIDE : Prend maintenant le rôle de l'ampoule 💡 */}
           <button className="info-btn" onClick={() => setIsModalOpen(true)} title="How does it work?" style={{ fontSize: '18px' }}>
             💡
           </button>
         </div>
       </header>
       
-      {/* Premium TradingView-Style Interactive Chart Workspace */}
+      {/* Chart Section */}
       <section className="form-section chart-section" style={{ marginBottom: '30px', padding: '24px', borderRadius: '16px' }}>
         <h2 style={{ paddingBottom: '12px', marginBottom: '20px' }}>
           <span className="title-icon" style={{ padding: '5px', borderRadius: '6px', marginRight: '8px' }}>
@@ -189,7 +178,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Intelligent High-End Statistics Matrix */}
+      {/* Stats Matrix */}
       <section className="stats-grid">
         <div className="stat-card">
           <h3>Total Net Balance</h3>
@@ -203,7 +192,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Pro Split UI Grid Screen Workspace */}
+      {/* Main Form & History Workspace */}
       <main className="main-content">
         <section className="form-section">
           <h2>Add New Trade Entry</h2>
