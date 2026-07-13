@@ -12,8 +12,6 @@
 <body>
 
     <div class="dashboard-container">
-        <!-- Floating Info Trigger Token -->
-        <button id="info-trigger-btn" class="info-btn" title="How does it work?">🌙</button>
 
         <!-- Premium Glassmorphism Informational Modal Overlay -->
         <div id="info-modal" class="info-modal hidden">
@@ -40,25 +38,37 @@
             </div>
         </div>
 
-        <!-- Executive Asymmetrical Header Section -->
+        <!-- Executive Asymmetrical Header Section (Fixed for Flexbox Alignment) -->
         <header>
-            <h1>
-                <span class="title-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#2f81f7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="20" x2="18" y2="10"></line>
-                        <line x1="12" y1="20" x2="12" y2="4"></line>
-                        <line x1="6" y1="20" x2="6" y2="14"></line>
-                    </svg>
-                </span> 
-                FX Budget Dashboard
-            </h1>
-            <p>Performance analytics & smart data-driven risk management</p>
+            <div>
+                <h1>
+                    <span class="title-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#2f81f7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg>
+                    </span> 
+                    FX Budget Dashboard
+                </h1>
+                <p>Performance analytics & smart data-driven risk management</p>
+            </div>
+
+            <!-- Placed inside header to instantly align with Flexbox layout rules -->
+            <button id="info-trigger-btn" class="info-btn" title="How does it work?">🌙</button>
         </header>
         
         <!-- Premium TradingView-Style Interactive Chart Workspace -->
         <section class="form-section chart-section" style="margin-bottom: 30px; padding: 24px; border-radius: 16px;">
             <h2 style="border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px;">
-                <span class="title-icon-sub">📈</span> Capital Evolution Curve
+                <!-- Swapped to an inline SVG to prevent the white emoji flattening glitch -->
+                <span class="title-icon" style="padding: 5px; border-radius: 6px; margin-right: 8px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                </span>
+                Capital Evolution Curve
             </h2>
             <div class="chart-container" style="position: relative; width: 100%; max-height: 250px;">
                 <canvas id="performance-chart"></canvas>
