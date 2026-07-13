@@ -23,8 +23,15 @@
 }
 
 /* ==========================================================================
-   2. GLOBAL RESET & LIVING ANIMATED BACKGROUND
+   2. INTERPOLATION ENGINE (HOUDINI) & LIVING ANIMATED BACKGROUND
    ========================================================================== */
+/* On apprend au navigateur comment animer mathématiquement l'angle du dégradé */
+@property --gradient-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -33,9 +40,8 @@
 }
 
 body {
-    /* High-fidelity moving linear cosmic canvas */
-    background: linear-gradient(135deg, #04060a, #0b111e, #050b14, #04060a);
-    background-size: 400% 400%;
+    /* Dégradé de l'espace boursier utilisant notre variable d'angle dynamique */
+    background: linear-gradient(var(--gradient-angle), #04060a, #0b111e, #050b14, #04060a);
     color: var(--text-main);
     display: flex;
     justify-content: center;
@@ -44,20 +50,18 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     
-    /* Unthrottled smooth hardware-accelerated movement */
-    animation: premiumDrift 20s ease infinite;
+    /* Rotation infinie, fluide et calculée par la carte graphique */
+    animation: premiumRotation 15s linear infinite;
 }
 
-@keyframes premiumDrift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.dashboard-container {
-    width: 100%;
-    max-width: 1100px;
-    position: relative;
+/* L'animation fait tourner l'angle sur 360 degrés pour un mouvement perpétuel */
+@keyframes premiumRotation {
+    0% {
+        --gradient-angle: 0deg;
+    }
+    100% {
+        --gradient-angle: 360deg;
+    }
 }
 
 /* ==========================================================================
