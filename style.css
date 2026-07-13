@@ -23,7 +23,7 @@
 }
 
 /* ==========================================================================
-   2. GLOBAL RESET & FOUNDATION
+   2. GLOBAL RESET & LIVING ANIMATED BACKGROUND
    ========================================================================== */
 * {
     margin: 0;
@@ -33,13 +33,9 @@
 }
 
 body {
-    background-color: #04060a;
-    /* Ultra-smooth multi-layered moving ambient mesh */
-    background-image: 
-        radial-gradient(at 0% 0%, rgba(47, 129, 247, 0.08) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.05) 0px, transparent 50%),
-        radial-gradient(at 50% 100%, rgba(244, 63, 94, 0.04) 0px, transparent 50%);
-    background-size: 200% 200%;
+    /* High-fidelity moving linear cosmic canvas */
+    background: linear-gradient(135deg, #04060a, #0b111e, #050b14, #04060a);
+    background-size: 400% 400%;
     color: var(--text-main);
     display: flex;
     justify-content: center;
@@ -48,21 +44,14 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     
-    /* Triggers the endless, breathing fluid cycle */
-    animation: ambientFluid 25s ease infinite alternate;
+    /* Unthrottled smooth hardware-accelerated movement */
+    animation: premiumDrift 20s ease infinite;
 }
 
-/* Smooth physics-based slow breathing background animation */
-@keyframes ambientFluid {
-    0% {
-        background-position: 0% 0%;
-    }
-    50% {
-        background-position: 100% 100%;
-    }
-    100% {
-        background-position: 0% 100%;
-    }
+@keyframes premiumDrift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .dashboard-container {
@@ -72,9 +61,12 @@ body {
 }
 
 /* ==========================================================================
-   3. EXECUTIVE ASYMMETRICAL HEADER
+   3. EXECUTIVE ASYMMETRICAL HEADER & UTILITIES
    ========================================================================== */
 header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     text-align: left;
     margin-bottom: 35px;
     position: relative;
@@ -97,6 +89,24 @@ header p {
     font-size: 12px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+}
+
+/* Fixed Info Trigger Placement */
+.info-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    font-size: 16px;
+    padding: 10px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--spring-transition);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.info-btn:hover {
+    border-color: var(--text-muted);
+    background: var(--card-hover);
+    transform: rotate(15deg) scale(1.05);
 }
 
 /* ==========================================================================
@@ -176,7 +186,7 @@ header p {
 }
 
 /* ==========================================================================
-   6. SPLIT LAYOUT (SIDEBAR INPUT + DATA LEDGER)
+   6. SPLIT LAYOUT (SIDEBAR FORM + HISTORY LEDGER)
    ========================================================================== */
 .main-content {
     display: grid;
@@ -191,11 +201,15 @@ header p {
 }
 
 .form-section, .history-section {
-    background-color: var(--card-bg);
+    /* Fluid Pro Glassmorphism */
+    background-color: rgba(13, 17, 23, 0.75) !important; 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
     border: 1px solid var(--border-color);
     padding: 28px;
     border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     transition: var(--spring-transition);
 }
 
@@ -211,7 +225,7 @@ h2 {
 }
 
 /* ==========================================================================
-   7. HIGH-FIDELITY FIELDS & INTERACTIONS
+   7. HIGH-FIDELITY FIELDS & FORM INTERACTION
    ========================================================================== */
 form {
     display: flex;
@@ -351,26 +365,6 @@ form button:active {
 /* ==========================================================================
    9. PREMIUM GLASSMORPHISM OVERLAY SYSTEM
    ========================================================================== */
-.info-btn {
-    position: absolute;
-    top: -5px;
-    right: 0;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    font-size: 16px;
-    padding: 10px 14px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: var(--spring-transition);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-.info-btn:hover {
-    border-color: var(--text-muted);
-    background: var(--card-hover);
-    transform: rotate(15deg) scale(1.05);
-}
-
 .info-modal {
     position: fixed;
     inset: 0;
@@ -445,11 +439,14 @@ form button:active {
     display: none !important;
 }
 
+/* ==========================================================================
+   10. HIGH-END CRUNCH SVG THEME INDICATORS
+   ========================================================================== */
 .title-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgba(47, 129, 247, 0.1); /* Subtle premium fintech blue glow */
+    background: rgba(47, 129, 247, 0.1); 
     border: 1px solid rgba(47, 129, 247, 0.25);
     padding: 8px;
     border-radius: 10px;
@@ -459,5 +456,5 @@ form button:active {
 
 .title-icon svg {
     display: block;
-    filter: drop-shadow(0px 0px 8px rgba(47, 129, 247, 0.5)); /* Soft neon bloom effect */
+    filter: drop-shadow(0px 0px 8px rgba(47, 129, 247, 0.5)); 
 }
