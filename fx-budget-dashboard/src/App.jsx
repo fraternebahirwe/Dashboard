@@ -27,6 +27,9 @@ export default function App() {
   const [pair, setPair] = useState('');
   const [amount, setAmount] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  // 1. AJOUT DU STATE POUR LE THEME DUAL
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   // Soumission d'un nouveau trade
   const handleRecordTrade = (e) => {
@@ -51,6 +54,11 @@ export default function App() {
     setTrades(trades.filter(trade => trade.id !== id));
   };
 
+  // Fonction pour basculer le thème
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   // Calculs financiers dynamiques
   const totalBalance = trades.reduce((sum, t) => sum + t.amount, 0);
   const totalWins = trades.filter(t => t.type === 'win').length;
@@ -59,7 +67,6 @@ export default function App() {
   // Configuration des données du graphique (Capital Curve Matrix)
   const getChartData = () => {
     let currentBalance = 0;
-    // On inverse l'ordre pour afficher la courbe chronologiquement (du plus vieux au plus récent)
     const dataPoints = [...trades].reverse().map(t => {
       currentBalance += t.amount;
       return currentBalance;
@@ -73,19 +80,20 @@ export default function App() {
         {
           label: 'Capital Growth ($)',
           data: dataPoints.length > 0 ? dataPoints : [0],
-          borderColor: '#2f81f7',
-          backgroundColor: 'rgba(47, 129, 247, 0.1)',
+          borderColor: isDarkMode ? '#2f81f7' : '#1d4ed8', // Couleur dynamique de la ligne
+          backgroundColor: isDarkMode ? 'rgba(47, 129, 247, 0.1)' : 'rgba(29, 78, 216, 0.1)',
           borderWidth: 3,
-          pointBackgroundColor: '#2f81f7',
+          pointBackgroundColor: isDarkMode ? '#2f81f7' : '#1d4ed8',
           pointBorderColor: '#fff',
           pointHoverRadius: 6,
-          tension: 0.3, // Rend la courbe lisse et organique
+          tension: 0.3,
           fill: true
         }
       ]
     };
   };
 
+  // 2. CONFIGURATION DYNAMIQUE DES COULEURS DES AXES DU GRAPHIQUE
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -93,13 +101,21 @@ export default function App() {
       legend: { display: false }
     },
     scales: {
-      x: { grid: { color: 'rgba(48, 54, 61, 0.2)' }, ticks: { color: '#8b949e' } },
-      y: { grid: { color: 'rgba(48, 54, 61, 0.2)' }, ticks: { color: '#8b949e' } }
+      x: { 
+        grid: { color: isDarkMode ? 'rgba(48, 54, 61, 0.2)' : 'rgba(148, 163, 184, 0.2)' }, 
+        ticks: { color: isDarkMode ? '#8b949e' : '#64748b' } 
+      },
+      y: { 
+        grid: { color: isDarkMode ? 'rgba(48, 54, 61, 0.2)' : 'rgba(148, 163, 184, 0.2)' }, 
+        ticks: { color: isDarkMode ? '#8b949e' : '#64748b' } 
+      }
     }
   };
 
   return (
-    <div className="dashboard-container">
+    // 3. INJECTION DE LA CLASSE DE THEME CLAIR SUR LE CONTENEUR PRINCIPAL
+    <div className={`dashboard-container ${!isDarkMode ? 'light-theme' : ''}`}>
+      
       {/* Premium Glassmorphism Informational Modal Overlay */}
       {isModalOpen && (
         <div className="info-modal">
@@ -140,15 +156,26 @@ export default function App() {
             </span> 
             FX Budget Dashboard
           </h1>
-          <p>Performance analytics & smart data-driven risk management</p>
+          <p style={{ color: 'var(--text-muted)' }}>Performance analytics & smart data-driven risk management</p>
         </div>
 
-        <button className="info-btn" onClick={() => setIsModalOpen(true)} title="How does it work?">🌙</button>
+        {/* 4. ZONE DES DEUX BOUTONS CORRIGÉE */}
+        <div style={{ display: 'flex', gap: '12px' }}>
+          {/* BOUTON THÈME : Affiche un soleil en mode sombre (pour allumer) et une lune en mode clair */}
+          <button className="info-btn" onClick={toggleTheme} title="Switch Theme" style={{ fontSize: '18px' }}>
+            {isDarkMode ? '☀️' : '🌙'}
+          </button>
+          
+          {/* BOUTON GUIDE : Prend maintenant le rôle de l'ampoule 💡 */}
+          <button className="info-btn" onClick={() => setIsModalOpen(true)} title="How does it work?" style={{ fontSize: '18px' }}>
+            💡
+          </button>
+        </div>
       </header>
       
       {/* Premium TradingView-Style Interactive Chart Workspace */}
       <section className="form-section chart-section" style={{ marginBottom: '30px', padding: '24px', borderRadius: '16px' }}>
-        <h2 style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '12px', marginBottom: '20px' }}>
+        <h2 style={{ paddingBottom: '12px', marginBottom: '20px' }}>
           <span className="title-icon" style={{ padding: '5px', borderRadius: '6px', marginRight: '8px' }}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
@@ -157,7 +184,7 @@ export default function App() {
           </span>
           Capital Evolution Curve
         </h2>
-        <div className="chart-container" style={{ position: 'relative', width: 100 + '%', height: '250px' }}>
+        <div className="chart-container" style={{ position: 'relative', width: '100%', height: '250px' }}>
           <Line data={getChartData()} options={chartOptions} />
         </div>
       </section>
