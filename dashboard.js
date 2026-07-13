@@ -1,5 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // ==========================================================================
+    // INITIALIZATION: ULTIMATE INTERACTIVE FLUID ENGINE
+    // ==========================================================================
+    if (window.WebGLFluidSimulation) {
+        WebGLFluidSimulation.init({
+            canvas: document.getElementById('fluid-canvas'),
+            SIM_RESOLUTION: 128,        /* Performance fluide constante à 60 FPS */
+            DYE_RESOLUTION: 512,
+            DENSITY_DISSIPATION: 3.5,   /* Disparition propre des traînées de gaz */
+            VELOCITY_DISSIPATION: 2.0,
+            PRESSURE: 0.8,
+            SPLAT_RADIUS: 0.2,          /* Épaisseur de l'interaction de la souris */
+            CURL: 35,                   /* Complexité des tourbillons de fluide */
+            COLOR_PALETTE: ['#2f81f7', '#10b981', '#1e1b4b'], /* Teintes Fintech Bleue & Verte */
+            SHADING: true,
+            BACKBUFFER_BACKGROUND_ALPHA: 0.0 /* Fond transparent pour laisser voir les orbes CSS */
+        });
+        
+        // Génère une petite impulsion fluide aléatoire dès le chargement initial
+        WebGLFluidSimulation.splatAt(window.innerWidth / 2, window.innerHeight / 2, 50, 50, '#2f81f7');
+    }
+
     // 1. DOM Elements Selection
     const tradeForm = document.getElementById('trade-form');
     const pairInput = document.getElementById('pair');

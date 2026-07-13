@@ -23,15 +23,8 @@
 }
 
 /* ==========================================================================
-   2. INTERPOLATION ENGINE (HOUDINI) & LIVING ANIMATED BACKGROUND
-   ========================================================================== */
-/* On apprend au navigateur comment animer mathématiquement l'angle du dégradé */
-@property --gradient-angle {
-    syntax: '<angle>';
-    initial-value: 0deg;
-    inherits: false;
-}
-
+   2. ELITE PLASMA MESH ENGINE (NON-SYNCHRONOUS CINEMATIC DRIFT)
+   ========================================================================== 
 * {
     margin: 0;
     padding: 0;
@@ -40,8 +33,7 @@
 }
 
 body {
-    /* Dégradé de l'espace boursier utilisant notre variable d'angle dynamique */
-    background: linear-gradient(var(--gradient-angle), #04060a, #0b111e, #050b14, #04060a);
+    background-color: #030508;
     color: var(--text-main);
     display: flex;
     justify-content: center;
@@ -49,19 +41,153 @@ body {
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    
-    /* Rotation infinie, fluide et calculée par la carte graphique */
-    animation: premiumRotation 15s linear infinite;
+    position: relative;
+    overflow-x: hidden;
 }
 
-/* L'animation fait tourner l'angle sur 360 degrés pour un mouvement perpétuel */
-@keyframes premiumRotation {
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+    mix-blend-mode: screen;
+    filter: blur(140px);
+    opacity: 0.12;
+}
+
+
+body::before {
+    background: radial-gradient(circle, var(--accent-blue) 0%, transparent 70%);
+    top: -20%;
+    left: -10%;
+    animation: liquidOrbOne 25s ease-in-out infinite alternate;
+}
+
+body::after {
+    background: radial-gradient(circle, var(--crypto-green) 0%, transparent 70%);
+    bottom: -20%;
+    right: -10%;
+    animation: liquidOrbTwo 30s ease-in-out infinite alternate;
+}
+
+@keyframes liquidOrbOne {
     0% {
-        --gradient-angle: 0deg;
+        transform: translate(0px, 0px) scale(1) rotate(0deg);
+    }
+    33% {
+        transform: translate(100px, 150px) scale(1.15) rotate(120deg);
+    }
+    66% {
+        transform: translate(-50px, 300px) scale(0.85) rotate(-90deg);
     }
     100% {
-        --gradient-angle: 360deg;
+        transform: translate(0px, 0px) scale(1) rotate(0deg);
     }
+}
+
+@keyframes liquidOrbTwo {
+    0% {
+        transform: translate(0px, 0px) scale(1.1) rotate(0deg);
+    }
+    50% {
+        transform: translate(-150px, -100px) scale(0.9) rotate(-180deg);
+    }
+    100% {
+        transform: translate(0px, 0px) scale(1.1) rotate(0deg);
+    }
+}
+*/
+/* ==========================================================================
+   2. ELITE QUANTUM FLUID MATRIX (QUANT MASTERPIECE)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+}
+
+/* Interactive Canvas Layer Placement */
+#fluid-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none; /* Mouse passes through to trigger background script */
+    opacity: 0.35;       /* Perfect balance for dark mode terminal */
+}
+
+body {
+    background-color: #020408; /* Ultra-deep premium black */
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Hyper-Optimized Light Orbs with Chromatic Saturation */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -2;
+    mix-blend-mode: screen;
+    filter: blur(160px);
+    opacity: 0.15;
+    will-change: transform; /* Bypasses CPU bottlenecking */
+}
+
+/* Orb 1: Deep Quantum Indigo */
+body::before {
+    background: radial-gradient(circle, #1d4ed8 0%, rgba(3, 7, 18, 0) 75%);
+    top: -15%;
+    left: -15%;
+    animation: quantumDriftOne 35s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+
+/* Orb 2: High-Yield Jade */
+body::after {
+    background: radial-gradient(circle, #059669 0%, rgba(3, 7, 18, 0) 75%);
+    bottom: -20%;
+    right: -15%;
+    animation: quantumDriftTwo 40s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+
+/* Cinematic non-linear trajectory animations */
+@keyframes quantumDriftOne {
+    0% { transform: translate(0px, 0px) scale(1) rotate(0deg) hue-rotate(0deg); }
+    50% { transform: translate(180px, 120px) scale(1.2) rotate(180deg) hue-rotate(30deg); }
+    100% { transform: translate(-60px, 240px) scale(0.9) rotate(360deg) hue-rotate(0deg); }
+}
+
+@keyframes quantumDriftTwo {
+    0% { transform: translate(0px, 0px) scale(1) rotate(0deg); }
+    50% { transform: translate(-220px, -140px) scale(1.1) rotate(-180deg); }
+    100% { transform: translate(40px, -40px) scale(1) rotate(0deg); }
+}
+
+/* Advanced high-contrast glassmorphic card design override */
+.form-section, .stat-card, .history-section {
+    background: rgba(10, 15, 26, 0.55) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6);
 }
 
 /* ==========================================================================

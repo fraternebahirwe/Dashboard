@@ -5,11 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FX Budget Dashboard — Premium Terminal</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Chart.js Engine CDN -->
+    
+    <!-- Moteur Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- CORRECTION 1 : Lien complet du moteur de fluide WebGL (doit être placé AVANT dashboard.js) -->
+    <script src="https://jsdelivr.net"></script>
+    
+    <!-- Votre script logique qui utilise les deux moteurs ci-dessus -->
     <script src="dashboard.js" defer></script>
 </head>
 <body>
+
+    <!-- Le Canvas reste bien au tout début du body, c'est parfait -->
+    <canvas id="fluid-canvas"></canvas>
 
     <div class="dashboard-container">
 
@@ -38,7 +47,7 @@
             </div>
         </div>
 
-        <!-- Executive Asymmetrical Header Section (Fixed for Flexbox Alignment) -->
+        <!-- Executive Asymmetrical Header Section -->
         <header>
             <div>
                 <h1>
@@ -54,14 +63,12 @@
                 <p>Performance analytics & smart data-driven risk management</p>
             </div>
 
-            <!-- Placed inside header to instantly align with Flexbox layout rules -->
             <button id="info-trigger-btn" class="info-btn" title="How does it work?">🌙</button>
         </header>
         
         <!-- Premium TradingView-Style Interactive Chart Workspace -->
         <section class="form-section chart-section" style="margin-bottom: 30px; padding: 24px; border-radius: 16px;">
             <h2 style="border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px;">
-                <!-- Swapped to an inline SVG to prevent the white emoji flattening glitch -->
                 <span class="title-icon" style="padding: 5px; border-radius: 6px; margin-right: 8px;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
