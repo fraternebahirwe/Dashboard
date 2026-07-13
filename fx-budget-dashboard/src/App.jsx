@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -8,7 +8,8 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Filler // 👈 AJOUTÉ : Indispensable pour l'option fill: true
 } from 'chart.js';
 
 ChartJS.register(
@@ -18,7 +19,8 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Filler // 👈 AJOUTÉ
 );
 
 export default function App() {
@@ -28,7 +30,7 @@ export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
 
-  // 🔴 LOGIQUE COMPLÈTE POUR CHANGER TOUTE LA PAGE (BODY)
+  // Synchronisation du thème avec le Body
   useEffect(() => {
     if (!isDarkMode) {
       document.body.classList.add('light-theme');
@@ -66,7 +68,8 @@ export default function App() {
   const totalWins = trades.filter(t => t.type === 'win').length;
   const winRate = trades.length > 0 ? Math.round((totalWins / trades.length) * 100) : 0;
 
-  const getChartData = () => {
+  // 🚀 OPTIMISATION : UseMemo évite de recalculer le graphique quand on écrit dans les inputs
+  const chartData = useMemo(() => {
     let currentBalance = 0;
     const dataPoints = [...trades].reverse().map(t => {
       currentBalance += t.amount;
@@ -82,17 +85,17 @@ export default function App() {
           label: 'Capital Growth ($)',
           data: dataPoints.length > 0 ? dataPoints : [0],
           borderColor: isDarkMode ? '#2f81f7' : '#0284c7', 
-          backgroundColor: isDarkMode ? 'rgba(47, 129, 247, 0.1)' : 'rgba(2, 132, 199, 0.1)',
+          backgroundColor: isDarkMode ? 'rgba(47, 129, 247, 0.05)' : 'rgba(2, 132, 199, 0.1)',
           borderWidth: 3,
           pointBackgroundColor: isDarkMode ? '#2f81f7' : '#0284c7',
-          pointBorderColor: '#fff',
+          pointBorderColor: isDarkMode ? '#04060a' : '#fff',
           pointHoverRadius: 6,
           tension: 0.3,
           fill: true
         }
       ]
     };
-  };
+  }, [trades, isDarkMode]);
 
   const chartOptions = {
     responsive: true,
@@ -141,7 +144,8 @@ export default function App() {
         <div>
           <h1>
             <span className="title-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#2f81f7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              {/* stroke modifié pour utiliser la variable CSS dynamique --accent-blue */}
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="var(--accent-blue)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="18" y1="20" x2="18" y2="10"></line>
                 <line x1="12" y1="20" x2="12" y2="4"></line>
                 <line x1="6" y1="20" x2="6" y2="14"></line>
@@ -174,7 +178,8 @@ export default function App() {
           Capital Evolution Curve
         </h2>
         <div className="chart-container" style={{ position: 'relative', width: '100%', height: '250px' }}>
-          <Line data={getChartData()} options={chartOptions} />
+          {/* Remplacement de getChartData() par la variable mémoïsée chartData */}
+          <Line data={chartData} options={chartOptions} />
         </div>
       </section>
 
@@ -230,7 +235,8 @@ export default function App() {
                 <span>{trade.pair}</span>
                 <div>
                   <strong>{trade.amount >= 0 ? `+${trade.amount}` : trade.amount} $</strong>
-                  <button className="delete-btn" onClick={() => handleDeleteTrade(trade.id)} style={{ background: 'none', border: 'none', color: '#f43f5e', marginLeft: '15px', cursor: 'pointer' }}>
+                  {/* Le style inline a été épuré car la couleur et les transitions sont désormais sécurisées côté CSS */}
+                  <button className="delete-btn" onClick={() => handleDeleteTrade(trade.id)} style={{ background: 'none', border: 'none', marginLeft: '15px', cursor: 'pointer' }}>
                     &times;
                   </button>
                 </div>
