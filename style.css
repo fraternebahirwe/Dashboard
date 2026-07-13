@@ -33,7 +33,13 @@
 }
 
 body {
-    background-color: var(--bg-dark);
+    background-color: #04060a;
+    /* Ultra-smooth multi-layered moving ambient mesh */
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(47, 129, 247, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.05) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(244, 63, 94, 0.04) 0px, transparent 50%);
+    background-size: 200% 200%;
     color: var(--text-main);
     display: flex;
     justify-content: center;
@@ -41,6 +47,22 @@ body {
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    
+    /* Triggers the endless, breathing fluid cycle */
+    animation: ambientFluid 25s ease infinite alternate;
+}
+
+/* Smooth physics-based slow breathing background animation */
+@keyframes ambientFluid {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 100%;
+    }
 }
 
 .dashboard-container {
