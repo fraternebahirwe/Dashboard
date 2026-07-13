@@ -1,6 +1,8 @@
-/* 1. System Variables & Fintech Colorway */
+/* ==========================================================================
+   1. SYSTEM VARIABLES & FINTECH COLORWAY (MASTERPIECE)
+   ========================================================================== */
 :root {
-    --bg-dark: #06090e;         /* Deeper, premium dark space */
+    --bg-dark: #04060a;         /* Deep, non-glare cinematic space */
     --card-bg: #0d1117;         /* Sleek obsidian card backgrounds */
     --card-hover: #161b22;      /* Smooth elevated surface */
     --border-color: #21262d;    /* Razor thin modern borders */
@@ -8,18 +10,21 @@
     --text-main: #f0f6fc;
     --text-muted: #8b949e;
     
-    /* Optimized Fintech Indicators */
+    /* Optimized Fintech Performance Indicators */
     --accent-blue: #2f81f7;
     --accent-glow: rgba(47, 129, 247, 0.15);
-    --crypto-green: #2ea043;    
-    --crypto-green-glow: rgba(46, 160, 67, 0.15);
-    --crypto-red: #f85149;      
-    --crypto-red-glow: rgba(248, 81, 73, 0.15);
+    --crypto-green: #10b981;    
+    --crypto-green-glow: rgba(16, 185, 129, 0.25);
+    --crypto-red: #f43f5e;      
+    --crypto-red-glow: rgba(244, 63, 94, 0.25);
     
-    /* Physics-based transitions */
+    /* Physics-based spring transitions */
     --spring-transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
+/* ==========================================================================
+   2. GLOBAL RESET & FOUNDATION
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -35,41 +40,64 @@ body {
     padding: 40px 20px;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* 2. Layout Framework */
 .dashboard-container {
     width: 100%;
-    max-width: 1100px; /* Expanded for a wider, cleaner dashboard footprint */
+    max-width: 1100px;
     position: relative;
 }
 
+/* ==========================================================================
+   3. EXECUTIVE ASYMMETRICAL HEADER
+   ========================================================================== */
 header {
-    text-align: left; /* Executive asymmetrical layout */
+    text-align: left;
     margin-bottom: 35px;
     position: relative;
-    padding-bottom: 15px;
+    padding-bottom: 20px;
     border-bottom: 1px solid var(--border-color);
 }
 
 header h1 {
-    font-size: 30px;
+    font-size: 32px;
     font-weight: 800;
     letter-spacing: -0.03em;
     margin-bottom: 4px;
-    background: linear-gradient(135deg, #ffffff 30%, var(--text-muted) 100%);
+    background: linear-gradient(135deg, #ffffff 40%, var(--text-muted) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 header p {
     color: var(--text-muted);
-    font-size: 13px;
-    letter-spacing: 0.01em;
+    font-size: 12px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
 }
 
-/* 3. High-End Statistics Matrix */
+/* ==========================================================================
+   4. TRADINGVIEW CANVAS GRID BACKDROP
+   ========================================================================== */
+.chart-section {
+    position: relative;
+    overflow: hidden;
+    background-image: 
+        linear-gradient(rgba(48, 54, 61, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(48, 54, 61, 0.12) 1px, transparent 1px) !important;
+    background-size: 20px 20px !important;
+    transition: var(--spring-transition);
+}
+
+.chart-section:hover {
+    border-color: var(--border-glow) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ==========================================================================
+   5. PERFORMANCE METRICS & AMBIENT BLOOM
+   ========================================================================== */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -85,13 +113,13 @@ header p {
     position: relative;
     overflow: hidden;
     transition: var(--spring-transition);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* Intelligent subtle state highlighting */
 .stat-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
     border-color: var(--border-glow);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
 }
 
 .stat-card h3 {
@@ -108,12 +136,29 @@ header p {
     font-weight: 800;
     letter-spacing: -0.02em;
     font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 20px transparent;
+    transition: text-shadow 0.3s ease, color 0.3s ease;
 }
 
-/* 4. Pro Split UI Screen (Sidebar Form + Main Workspace) */
+/* Intelligent Real-Time Ambient Light Bloom */
+#total-balance[style*="color: rgb(16, 185, 129)"],
+#total-balance[style*="color: #10b981"] {
+    text-shadow: 0 0 25px var(--crypto-green-glow);
+}
+
+#total-balance[style*="color: rgb(239, 68, 68)"],
+#total-balance[style*="color: #ef4444"],
+#total-balance[style*="color: rgb(244, 63, 94)"],
+#total-balance[style*="color: #f43f5e"] {
+    text-shadow: 0 0 25px var(--crypto-red-glow);
+}
+
+/* ==========================================================================
+   6. SPLIT LAYOUT (SIDEBAR INPUT + DATA LEDGER)
+   ========================================================================== */
 .main-content {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
+    grid-template-columns: 1fr 1.4fr;
     gap: 30px;
 }
 
@@ -128,22 +173,24 @@ header p {
     border: 1px solid var(--border-color);
     padding: 28px;
     border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    transition: var(--spring-transition);
 }
 
 h2 {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     margin-bottom: 24px;
     color: var(--text-main);
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
 }
 
-/* 5. Precision Input Design */
+/* ==========================================================================
+   7. HIGH-FIDELITY FIELDS & INTERACTIONS
+   ========================================================================== */
 form {
     display: flex;
     flex-direction: column;
@@ -156,7 +203,7 @@ form label {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: -10px;
+    margin-bottom: -12px;
 }
 
 form input {
@@ -169,6 +216,10 @@ form input {
     font-weight: 500;
     outline: none;
     transition: var(--spring-transition);
+}
+
+form input:hover {
+    border-color: #444c56;
 }
 
 form input:focus {
@@ -199,7 +250,9 @@ form button:active {
     transform: scale(0.97);
 }
 
-/* 6. Dynamic History Feed */
+/* ==========================================================================
+   8. REAL-TIME DATA HISTORY FEED
+   ========================================================================== */
 #trade-list {
     list-style: none;
     max-height: 380px;
@@ -230,10 +283,13 @@ form button:active {
 .trade-item:hover {
     border-color: var(--border-glow);
     background-color: var(--card-hover);
-    transform: scale(1.01);
+    transform: translateX(4px);
 }
 
-/* Distinctive status illumination */
+.trade-item:active {
+    transform: scale(0.99);
+}
+
 .trade-item.win {
     border-left: 4px solid var(--crypto-green);
 }
@@ -253,6 +309,7 @@ form button:active {
     font-size: 15px;
 }
 
+/* Slide-to-Reveal Controls */
 .delete-btn {
     opacity: 0;
     transform: translateX(10px);
@@ -260,7 +317,7 @@ form button:active {
 }
 
 .trade-item:hover .delete-btn {
-    opacity: 0.6;
+    opacity: 0.5;
     transform: translateX(0);
 }
 
@@ -269,7 +326,9 @@ form button:active {
     transform: scale(1.2) !important;
 }
 
-/* 7. System UI Utilities */
+/* ==========================================================================
+   9. PREMIUM GLASSMORPHISM OVERLAY SYSTEM
+   ========================================================================== */
 .info-btn {
     position: absolute;
     top: -5px;
@@ -281,17 +340,19 @@ form button:active {
     border-radius: 20px;
     cursor: pointer;
     transition: var(--spring-transition);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 .info-btn:hover {
     border-color: var(--text-muted);
     background: var(--card-hover);
+    transform: rotate(15deg) scale(1.05);
 }
 
 .info-modal {
     position: fixed;
     inset: 0;
-    background-color: rgba(4, 6, 9, 0.85);
+    background-color: rgba(4, 6, 9, 0.82);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -300,7 +361,7 @@ form button:active {
 }
 
 .modal-content {
-    background-color: var(--card-bg);
+    background-color: rgba(22, 27, 34, 0.96);
     border: 1px solid var(--border-color);
     padding: 36px;
     border-radius: 20px;
@@ -308,11 +369,11 @@ form button:active {
     width: 90%;
     position: relative;
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
-    animation: cubicEntrance 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: cubicEntrance 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes cubicEntrance {
-    from { transform: scale(0.95) translateY(15px); opacity: 0; }
+    from { transform: scale(0.94) translateY(20px); opacity: 0; }
     to { transform: scale(1) translateY(0); opacity: 1; }
 }
 
@@ -326,10 +387,22 @@ form button:active {
     font-size: 28px;
     cursor: pointer;
     line-height: 0.5;
+    transition: var(--spring-transition);
+}
+
+.close-btn:hover {
+    color: var(--crypto-red);
+    transform: scale(1.1);
 }
 
 .guide-item {
     margin-top: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(48, 54, 61, 0.4);
+}
+
+.guide-item:last-child {
+    border-bottom: none;
 }
 
 .guide-item h3 {
@@ -348,46 +421,4 @@ form button:active {
 
 .hidden {
     display: none !important;
-}
-
-/* ==========================================================================
-   10. ULTIMATE PREMIUM FINISHING TOUCHES (Add to the bottom of style.css)
-   ========================================================================== */
-
-/* Authentic TradingView Chart Grid Background */
-.chart-section {
-    position: relative;
-    overflow: hidden;
-    background-image: 
-        linear-gradient(rgba(48, 54, 61, 0.15) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(48, 54, 61, 0.15) 1px, transparent 1px);
-    background-size: 20px 20px;
-}
-
-/* Dynamic Performance Glow States for the Cards */
-#total-balance, #win-rate {
-    text-shadow: 0 0 20px transparent;
-    transition: text-shadow 0.3s ease;
-}
-
-/* When balance goes green, give it a subtle ambient backlight bloom */
-#total-balance[style*="color: rgb(16, 185, 129)"],
-#total-balance[style*="color: #10b981"] {
-    text-shadow: 0 0 25px rgba(16, 185, 129, 0.35);
-}
-
-/* When balance goes red, bloom it with soft crimson warning aura */
-#total-balance[style*="color: rgb(239, 68, 68)"],
-#style[style*="color: #ef4444"] {
-    text-shadow: 0 0 25px rgba(239, 68, 68, 0.35);
-}
-
-/* Subtle Interactive Input Highlight */
-form input:hover {
-    border-color: #444c56;
-}
-
-/* Interactive item pulsing */
-.trade-item:active {
-    transform: scale(0.99);
 }
