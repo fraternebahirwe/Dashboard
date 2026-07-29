@@ -2,32 +2,56 @@
    1. SYSTEM VARIABLES & FINTECH COLORWAY (MASTERPIECE)
    ========================================================================== */
 :root {
-    /* --- MODE SOMBRE (Par défaut) --- */
-    --bg-dark: #04060a;         /* Deep, non-glare cinematic space */
-    --bg-body: #020408;         /* Ultra-deep premium black */
-    --card-bg: rgba(13, 20, 35, 0.55); /* Sleek obsidian card backgrounds */
-    --card-hover: #161b22;      /* Smooth elevated surface */
-    --border-color: #21262d;    /* Razor thin modern borders */
-    --border-glow: #30363d;
-    --text-main: #f0f6fc;
-    --text-muted: #8b949e;
-    
-    /* Optimized Fintech Performance Indicators */
-    --accent-blue: #2f81f7;
-    --accent-glow: rgba(47, 129, 247, 0.15);
-    --crypto-green: #10b981;    
-    --crypto-green-glow: rgba(16, 185, 129, 0.25);
-    --crypto-red: #f43f5e;      
-    --crypto-red-glow: rgba(244, 63, 94, 0.25);
-    
-    /* Fluid Quantum Orbs Variables */
-    --orb-one-color: #1d4ed8;
-    --orb-two-color: #059669;
-    --plasma-opacity: 0.15;
-    --glass-shadow: rgba(0, 0, 0, 0.6);
-    
-    /* Physics-based spring transitions */
-    --spring-transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+
+  /* ===========================
+     COLORS
+  ============================ */
+
+  --bg-body: #020408;
+  --bg-dark: #04060a;
+
+  --text-main: #f0f6fc;
+  --text-muted: #8b949e;
+
+  --border-color: #21262d;
+  --border-glow: #30363d;
+
+  /* ===========================
+     BRAND
+  ============================ */
+
+  --accent-blue: #2f81f7;
+
+  --crypto-green: #10b981;
+  --crypto-red: #f43f5e;
+
+  /* ===========================
+     SURFACES
+  ============================ */
+
+  --card-bg: rgba(13,20,35,.55);
+  --card-hover: #161b22;
+
+  /* ===========================
+     EFFECTS
+  ============================ */
+
+  --glass-shadow: rgba(0,0,0,.6);
+
+  --accent-glow: rgba(47,129,247,.15);
+
+  --crypto-green-glow: rgba(16,185,129,.25);
+
+  --crypto-red-glow: rgba(244,63,94,.25);
+
+  /* ===========================
+     ANIMATIONS
+  ============================ */
+
+  --transition-fast: .2s ease;
+
+  --transition: .35s cubic-bezier(.25,1,.5,1);
+
 }
 
 /* ==========================================================================
